@@ -121,9 +121,6 @@ console.log(gameObject());
 
 const numPointsScored = name => {
     const gameData = gameObject();
-    // let nameLookup = Object.keys(gameData.home.players);
-    // nameLookup = nameLookup.concat(Object.keys(gameData.away.players));
-    // console.log(nameLookup);
 
     for (elements in gameData.home.players) {
         if (elements === name){
@@ -136,4 +133,47 @@ const numPointsScored = name => {
         } 
     } 
 
+}
+
+const shoeSize = name => {
+    const gameData = gameObject();
+
+    for (elements in gameData.home.players) {
+        if (elements === name){
+            return gameData.home.players[elements].shoe;
+        } 
+    }
+    for (elements in gameData.away.players) {
+        if (elements === name){
+            return gameData.away.players[elements].shoe;
+        } 
+    } 
+}
+
+const teamColors = teamName => {
+    const gameData = gameObject();
+
+    if(gameData.home.teamName === teamName) {
+        return gameData.home.colors;
+    }
+    else if(gameData.away.teamName === teamName) {
+        return gameData.away.colors;
+    }
+}
+
+const playerNumbers = teamName => {
+    const gameData = gameObject();
+    let teamNumbers = [];
+
+    if(gameData.home.teamName === teamName) {
+        for(element in gameData.home.players) {
+            teamNumbers.push(gameData.home.players[element].number);
+        }
+    }
+    else if(gameData.away.teamName === teamName) {
+        for(element in gameData.away.players) {
+            teamNumbers.push(gameData.away.players[element].number);
+        }
+    }
+    return teamNumbers;
 }
