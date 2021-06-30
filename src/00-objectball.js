@@ -295,3 +295,23 @@ const mostPointsScored = () => {
 
 
 }
+
+const winningTeam = () => {
+    const gameData = gameObject();
+    let homePoints = 0;
+    let awayPoints = 0;
+
+    for (elements in gameData.home.players) {
+        homePoints += gameData.home.players[elements].points;
+    }
+    for (elements in gameData.away.players) {
+        awayPoints += gameData.away.players[elements].points;
+    } 
+
+    if(homePoints > awayPoints) {
+        return gameData.home.teamName;
+    }
+    else {
+        return gameData.away.teamName;
+    }
+}
