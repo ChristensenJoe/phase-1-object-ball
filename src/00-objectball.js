@@ -177,3 +177,121 @@ const playerNumbers = teamName => {
     }
     return teamNumbers;
 }
+
+const playerStats = name => {
+    const gameData = gameObject();
+
+    for (elements in gameData.home.players) {
+        if (elements === name){
+            return gameData.home.players[elements];
+        } 
+    }
+    for (elements in gameData.away.players) {
+        if (elements === name){
+            return gameData.away.players[elements];
+        } 
+    } 
+}
+
+const biggestShoe = () => {
+    const gameData = gameObject();
+    let playerName;
+    let shoeSize = 0;
+
+    for (elements in gameData.home.players) {
+        if (gameData.home.players[elements].shoe > shoeSize){
+            shoeSize = gameData.home.players[elements].shoe;
+            playerName = elements;
+        } 
+    }
+
+    for (elements in gameData.away.players) {
+        if (gameData.away.players[elements].shoe > shoeSize){
+            shoeSize = gameData.away.players[elements].shoe;
+            playerName = elements;
+        } 
+    }
+
+    return playerName;
+}
+
+
+const bigShoeRebounds = () => {
+    const gameData = gameObject();
+
+    return playerStats(biggestShoe()).rebounds;
+}
+
+
+const playerWithLongestName = () => {
+    const gameData = gameObject();
+    let playerName;
+    let nameLength = 0;
+
+    for (elements in gameData.home.players) {
+        if (elements.length > nameLength){
+            nameLength = elements.length;
+            playerName = elements;
+        } 
+    }
+
+    for (elements in gameData.away.players) {
+        if (elements.length > nameLength){
+            nameLength = elements.length;
+            playerName = elements;
+        } 
+    }
+
+    //console.log(nameLength);
+
+    return playerName;
+}
+
+
+const doesLongNameStealATon = () => {
+    const gameData = gameObject();
+
+    const longestName = playerWithLongestName();
+
+    let isTrue = true;
+
+
+
+    for (elements in gameData.home.players) {
+        if (gameData.home.players[elements].steals > playerStats(longestName).steals) {
+            isTrue = false;
+        } 
+    }
+
+    for (elements in gameData.away.players) {
+        if (gameData.away.players[elements].steals > playerStats(longestName).steals) {
+            isTrue = false;
+        } 
+    }
+
+    return isTrue;
+}
+
+const mostPointsScored = () => {
+    const gameData = gameObject();
+    let playerName;
+    let points = 0;
+
+    for (elements in gameData.home.players) {
+        if (gameData.home.players[elements].points > points) {
+            playerName = elements;
+            points = gameData.home.players[elements].points;
+        }
+    }
+
+    for (elements in gameData.away.players) {
+        if (gameData.away.players[elements].points > points) {
+            playerName = elements;
+            points = gameData.away.players[elements].points;
+        }
+    }
+
+    return playerName;
+
+
+}
