@@ -117,3 +117,23 @@ const gameObject = () => {
 }
 
 console.log(gameObject());
+
+
+const numPointsScored = name => {
+    const gameData = gameObject();
+    // let nameLookup = Object.keys(gameData.home.players);
+    // nameLookup = nameLookup.concat(Object.keys(gameData.away.players));
+    // console.log(nameLookup);
+
+    for (elements in gameData.home.players) {
+        if (elements === name){
+            return gameData.home.players[elements].points;
+        } 
+    }
+    for (elements in gameData.away.players) {
+        if (elements === name){
+            return gameData.away.players[elements].points;
+        } 
+    } 
+
+}
